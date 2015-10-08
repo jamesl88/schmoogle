@@ -1,0 +1,27 @@
+class ActivitiesController < ApplicationController
+  def index
+    @activity = Activity.new
+  end
+  def create
+    activity = Activity.new(activity_params)
+    if activity.save
+      assign_activity_to_user
+      flash[:success] = 'Activity has been created'
+    else
+      flash[:alert] = 'Something went wrong - Activity has not been created'
+    end
+
+    redirect_to :back
+  end
+
+
+  private
+
+  def assign_activity_to_user
+    User.all.each { |user| user.add_activities }
+  end
+
+  def activity_params
+    params.require(:activity).permit(:name, :scheduled_at)    
+  end
+end

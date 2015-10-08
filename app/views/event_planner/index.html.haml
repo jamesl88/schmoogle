@@ -1,0 +1,24 @@
+.container
+  .col-md-10.col-md-offset-1
+    .panel.panel-info
+      .panel-heading
+        %h3.panel-title Anna's 30th Birthday
+      .panel-body
+        %table.table.table-bordered
+          %th #
+          - @activities.order(:name).each do |activity|
+            %th.text-center
+              #{activity.name} 
+              %br
+              #{activity.scheduled_at.strftime("%m/%d/%Y - %I:%M%p")}
+          %tbody
+            - @users.each do |user|
+              %tr
+                %th= user.name
+                = form_for user do |f|
+                  = f.hidden_field :id, value: user.id
+                  - user.participants.each do |participant|
+                    = f.fields_for :participants, participant do |participant_field|
+                      %td.text-center= participant_field.check_box :attending
+
+                  %td.text-center= f.submit 'Save', class: 'btn btn-info'

@@ -1,0 +1,14 @@
+.container
+  .col-md-6.col-md-offset-3
+    .panel.panel-warning
+      .panel-heading
+        %h3.panel-title Create an activity
+      .panel-body
+        = form_for :activity do |f|
+          .form-group
+            = f.label :name
+            = f.text_field :name, class: 'form-control'
+          .form-group
+            = f.label :scheduled_at
+            = f.text_field :scheduled_at, class: 'datepicker form-control'
+          = f.submit 'Save', class: 'btn btn-default'
