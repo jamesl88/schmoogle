@@ -1,6 +1,6 @@
 .container
   .col-md-6.col-md-offset-3
-    .panel.panel-warning
+    .panel.panel-success
       .panel-heading
         %h3.panel-title Create an activity
       .panel-body
@@ -15,19 +15,19 @@
 
 .container
   .col-md-6.col-md-offset-3
-    .panel.panel-default
+    .panel.panel-success
       .panel-heading
-        %h3.panel-title Users
+        %h3.panel-title Activities
       .panel-body
         %table.table.table-bordered
           %thead
-            %th.text-center id
             %th.text-center Name
+            %th.text-center Scheduled at
             %th.text-center
           %tbody
             - @activities.each do |activity|
               %tr
-                %td.text-center= activity.id
                 %td.text-center= activity.name
+                %td.text-center= activity.scheduled_at.strftime("%m/%d/%Y - %I:%M%p")
                 %td.text-center= link_to 'delete', activity, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } 
 
