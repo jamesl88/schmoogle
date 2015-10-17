@@ -5,7 +5,7 @@
         %h3.panel-title Anna's 30th Birthday
       .panel-body
         %table.table.table-bordered
-          %th #
+          %th Name
           - @activities.order(:name).each do |activity|
             %th.text-center
               #{activity.name} 
@@ -23,7 +23,7 @@
 
                   %td.text-center= f.submit 'Save', class: 'btn btn-info'
 
-            %th #
+            %th.active Total
             - @activities.order(:name).each do |activity|
-              %th.text-center
+              %th.active.text-center
                 = activity.participants.attending.count
