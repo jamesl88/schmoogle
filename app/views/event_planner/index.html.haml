@@ -22,3 +22,8 @@
                       %td.text-center= participant_field.check_box :attending
 
                   %td.text-center= f.submit 'Save', class: 'btn btn-info'
+
+            %th #
+            - @activities.order(:name).each do |activity|
+              %th.text-center
+                = activity.participants.attending.count
