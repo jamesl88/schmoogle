@@ -3,12 +3,12 @@
     %h3.panel-title Anna's 30th Birthday
   .panel-body
     %table.table.table-bordered
-      %th Name
+      %th
       - @activities.each do |activity|
         %th.text-center
-          #{activity.name} 
+          %span.activity-title= activity.name
           %br
-          #{activity.scheduled_at.strftime("%m/%d/%Y - %I:%M%p")}
+          %span.activity-schedule= activity.scheduled_at.strftime("%m/%d/%Y - %I:%M%p")
       %tbody
         - @users.each do |user|
           %tr
