@@ -16,6 +16,17 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
+  def update
+    user = User.find(user_params[:id])
+    if user.update_attributes(user_params)
+      flash[:success] = 'User has been update'
+    else
+      flash[:alert] = 'Something went wrong - User has not been updated'
+    end
+
+    redirect_to :back
+  end
+
   def destroy
     user = User.find(params[:id])
     if user.destroy!
