@@ -16,18 +16,6 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
-  def update
-    user = User.find(user_params[:id])
-    if user.save
-      update_participants
-      flash[:success] = 'Success'
-    else
-      flash[:alert] = 'Opps - something went wrong. Please try again'
-    end
-
-    redirect_to :back
-  end
-
   def destroy
     user = User.find(params[:id])
     if user.destroy!
@@ -41,19 +29,7 @@ class UsersController < ApplicationController
 
   private
 
-  def update_participants
-    user_params[:participants_attributes].each do |param|
-      participant = Participant.find(param[1][:id])
-      participant.attending = param[1][:attending]
-      participant.save!
-    end
-  end
-
   def user_params
-    params.require(:user).permit(
-      :id,
-      :name,
-      { participants_attributes: [:id, :user_id, :attending, :activity_id] }
-    )
+    params.require(:user).permit(:id, :name)
   end
 end

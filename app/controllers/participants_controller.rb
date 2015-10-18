@@ -1,19 +1,22 @@
 class ParticipantsController < ApplicationController
 
   def update
-    participant = Participant.find_by(participant_params)
-    if participant.save
-      flash[:success] = 'Success'
-    else
-      flash[:alert] = 'Opps - something went wrong. Please try again'
-    end
+    participant = Participant.find(params[:id])
+    load_users_and_activities
 
-    redirect_to :back
+    respond_to do |format|
+      if participant.toggle!(:attending)
+        format.js
+      else
+        format.json { render json: {}, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
 
-  def participant_params
-    params.require(:participant).permit(:id, :user_id, :attending, :activity_id)    
+  def load_users_and_activities
+    @activities = Activity.all
+    @users = User.all
   end
 end

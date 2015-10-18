@@ -1,0 +1,21 @@
+.panel.panel-info
+  .panel-heading
+    %h3.panel-title Anna's 30th Birthday
+  .panel-body
+    %table.table.table-bordered
+      %th Name
+      - @activities.each do |activity|
+        %th.text-center
+          #{activity.name} 
+          %br
+          #{activity.scheduled_at.strftime("%m/%d/%Y - %I:%M%p")}
+      %tbody
+        - @users.each do |user|
+          %tr
+            %th= user.name
+            - user.participants.each do |participant|
+              %td.text-center= link_to(check_box_tag(:attending, "1", participant.attending?), participant_path(participant), method: :put, remote: true)
+        %tr
+          %th.active Total
+          - @activities.each do |activity|
+            %th.active.text-center= activity.participants.attending.count
