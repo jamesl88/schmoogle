@@ -15,7 +15,7 @@
             %th= user.name
             - user.participants.each do |participant|
               %td.text-center= link_to(check_box_tag(:attending, "1", participant.attending?), participant_path(participant), method: :put, remote: true)
-        %tr
-          %th.active Total
+        %tr#total-row
+          %th.active TOTAL
           - @activities.each do |activity|
             %th.active.text-center= activity.participants.attending.count
