@@ -1,6 +1,6 @@
 .panel.panel-info
   .panel-heading
-    %h3.panel-title Anna's 30th Birthday
+    %h3.panel-title Anna's 30th Birthday - 1st November
   .panel-body
     %table.table.table-bordered
       %th
@@ -8,7 +8,7 @@
         %th.text-center
           %span.activity-title= activity.name
           %br
-          %span.activity-schedule= activity.scheduled_at.strftime("%m/%d/%Y - %I:%M%p")
+          %span.activity-schedule= activity.scheduled_at.strftime("%R")
       %tbody
         - @users.each do |user|
           %tr
