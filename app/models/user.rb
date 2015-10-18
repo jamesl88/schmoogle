@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
   has_many :activities, through: :participants
   has_many :participants
 
-  accepts_nested_attributes_for :participants, update_only: true
-
   def add_activities
     activities = Activity.all.reject { |activity| self.activities.pluck(:name).include?(activity.name) }
 
