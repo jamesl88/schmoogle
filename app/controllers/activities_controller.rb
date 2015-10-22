@@ -8,9 +8,9 @@ class ActivitiesController < ApplicationController
     activity = Activity.new(activity_params)
     if activity.save
       assign_activity_to_user
-      flash[:success] = 'Activity has been created'
+      flash[:success] = "'#{activity.name}' has been added"
     else
-      flash[:alert] = 'Something went wrong - Activity has not been created'
+      flash[:alert] = 'Something went wrong - Your activity has not been created'
     end
 
     redirect_to :back
@@ -19,7 +19,7 @@ class ActivitiesController < ApplicationController
   def update
     activity = Activity.find(params[:id])
     if activity.update_attributes(activity_params)
-      flash[:success] = 'Activity has successfully updated'
+      flash[:success] = "'#{activity.name}' has been updated"
     else
       flash[:alert] = 'Opps - something went wrong. Please try again'
     end
@@ -30,7 +30,7 @@ class ActivitiesController < ApplicationController
   def destroy
     activity = Activity.find(params[:id])
     if activity.destroy!
-      flash[:success] = 'Activity successfully deleted'
+      flash[:success] = "'#{activity.name}' successfully deleted"
     else
       flash[:alert] = 'Opps - something went wrong. Please try again'
     end
