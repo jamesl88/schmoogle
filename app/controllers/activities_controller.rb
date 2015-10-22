@@ -16,6 +16,17 @@ class ActivitiesController < ApplicationController
     redirect_to :back
   end
 
+  def update
+    activity = Activity.find(params[:id])
+    if activity.update_attributes(activity_params)
+      flash[:success] = 'Activity has successfully updated'
+    else
+      flash[:alert] = 'Opps - something went wrong. Please try again'
+    end
+
+    redirect_to :back
+  end
+
   def destroy
     activity = Activity.find(params[:id])
     if activity.destroy!

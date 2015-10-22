@@ -1,5 +1,5 @@
 $(function(){
   $('.datepicker').datetimepicker({
-      format: 'yyyy-mm-dd hh:ii'
+      format: 'dd-mm-yyyy hh:ii'
   });
 });
