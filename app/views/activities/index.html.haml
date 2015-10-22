@@ -18,20 +18,18 @@
     .panel.panel-success
       .panel-heading
         %h3.panel-title Activities
-      .panel-body
-        %table.table.table-bordered
-          %thead
-            %th.text-center Name
-            %th.text-center Scheduled at
-            %th.text-center Edit
-            %th.text-center Delete
-          %tbody
-            - @activities.each do |activity|
-              %tr
-                = form_for :activity, url: activity_path(activity), method: :put do |f|
-                  = f.hidden_field :id, value: activity.id
-                  %td.text-center= f.text_field :name, value: activity.name, class: 'form-control'
-                  %td.text-center= f.text_field :scheduled_at, class: 'datepicker form-control', value: activity.scheduled_at.strftime("%d/%m/%Y - %I:%M%p")
-                  %td.text-center= f.submit 'Save', class: 'btn btn-warning'
-                  %td.text-center= link_to 'delete', activity, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } 
-
+      %table.table
+        %thead
+          %th.text-center Name
+          %th.text-center Scheduled at
+          %th.text-center Edit
+          %th.text-center Delete
+        %tbody
+          - @activities.each do |activity|
+            %tr
+              = form_for :activity, url: activity_path(activity), method: :put do |f|
+                = f.hidden_field :id, value: activity.id
+                %td.text-center= f.text_field :name, value: activity.name, class: 'form-control'
+                %td.text-center= f.text_field :scheduled_at, class: 'datepicker form-control', value: activity.scheduled_at.strftime("%d/%m/%Y - %I:%M%p")
+                %td.text-center= f.submit 'Save', class: 'btn btn-warning'
+                %td.text-center= link_to 'delete', activity, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } 
