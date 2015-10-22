@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :activities, through: :participants
   has_many :participants, dependent: :destroy
 
+  default_scope { order(name: :asc) }
+
   def add_activities
     activities = Activity.all.reject { |activity| self.activities.pluck(:name).include?(activity.name) }
 
