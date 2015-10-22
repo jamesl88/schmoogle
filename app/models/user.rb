@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :activities, through: :participants
-  has_many :participants
+  has_many :participants, dependent: :destroy
 
   def add_activities
     activities = Activity.all.reject { |activity| self.activities.pluck(:name).include?(activity.name) }
