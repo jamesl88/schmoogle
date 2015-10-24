@@ -1,9 +1,9 @@
-.panel.panel-warning
+.panel.panel-info
   .panel-heading
     %h3.panel-title Anna's 30th Birthday - 1st November
 
   %table.table.table-bordered.table-striped
-    %tr.warning
+    %tr.info
       %th
       - @activities.each do |activity|
         %th.text-center
@@ -16,7 +16,7 @@
           %th= user.name
           - user.participants.each do |participant|
             %td.text-center= link_to(check_box_tag(:attending, "1", participant.attending?), participant_path(participant), method: :put, remote: true)
-      %tr.warning#total-row
+      %tr.info#total-row
         %th TOTAL
         - @activities.each do |activity|
-          %th.warning.text-center= activity.participants.attending.count
+          %th.info.text-center= activity.participants.attending.count
