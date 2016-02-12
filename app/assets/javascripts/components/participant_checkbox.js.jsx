@@ -5,7 +5,7 @@ var ParticipantCheckbox = React.createClass({
     }
   },
 
-  handleChange: function(participant) {
+  handleChange: function() {
     $.ajax({
       type: "PUT",
       url: "/api/v1/participants/" + this.props.id,

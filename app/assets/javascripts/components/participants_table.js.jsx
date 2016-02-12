@@ -2,7 +2,7 @@ var ParticipantsTable = React.createClass({
   getInitialState: function() {
     return {
       users: [],
-      activities: [],
+      checked: false,
     }
   },
 
@@ -13,19 +13,20 @@ var ParticipantsTable = React.createClass({
   },
 
   render: function() {
-    self = this
     header = []
     rows = []
+    attending_count_row = []
 
-    this.props.activities.forEach(function(activity) {
-      header.push(<th key={activity.id}>{activity.name}<br/>{activity.scheduled_at}</th>);
-    });
-
-    this.props.users.forEach(function(user) {
+    this.props.users.forEach(function(user, i) {
+      if(i == 0) {
+        user.activities.forEach(function(activity) {
+          header.push(<th key={activity.id}>{activity.name}<br/>{activity.scheduled_at}</th>);
+        });
+      }
       rows.push(
-        <ParticipantsRow onUserInput={self.handleUserInput} participants={user.participants} participant_name={user.name} key={user.name}/>
+        <ParticipantsRow onUserInput={this.handleUserInput} participants={user.participants} participant_name={user.name} key={user.name}/>
       );
-    });
+    }.bind(this));
 
     return(
       <table className="table table-bordered table-striped">
