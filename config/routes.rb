@@ -4,5 +4,11 @@ Rails.application.routes.draw do
   resources :event_planner, only: [:index]
   resources :users
   resources :activities
-  resources :participants, only: [:update]
+
+  #api
+  namespace :api do
+    namespace :v1 do
+      resources :participants, only: [:update]
+    end
+  end
 end

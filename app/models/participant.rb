@@ -4,4 +4,6 @@ class Participant < ActiveRecord::Base
 
   default_scope { joins(:activity).order("activities.scheduled_at asc") }
   scope :attending, -> { where(attending: true) }
+
+  delegate :name, :schedule, to: :activity, prefix: true
 end

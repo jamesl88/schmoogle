@@ -1,6 +1,5 @@
 class EventPlannerController < ApplicationController
   def index
-    @activities = Activity.all
-    @users = User.all
+    @users = User.all.as_json(include: [:participants, :activities])
   end
 end
