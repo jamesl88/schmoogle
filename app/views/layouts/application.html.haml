@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Schmoogle
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+    %link{ rel:"stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"}
+
+    %script{ src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"}
+    %link{ href: 'https://fonts.googleapis.com/css?family=Great+Vibes|Poiret+One|Roboto:400,300,100', rel: 'stylesheet', type: 'text/css' }
+    %link{ rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"}
+
+
+  %body{class: content_for(:body_classes)}
+    %header
+      %nav.navbar.navbar-default
+        .container
+          .navbar-header
+            %a{ class: "navbar-brand", href: "/"}
+              Schmoogle
+              %span.logo.fa.fa-calendar
+              Planner
+          .navbar.hidden-sm.hidden-xs
+            %ul.nav.navbar-nav.navbar-right
+              %li
+                %a{href: "#"} Log in
+              %li
+                %a{href: "#"} Sign up
+
+    = yield
