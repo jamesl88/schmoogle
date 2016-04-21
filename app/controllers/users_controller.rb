@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      user.add_activities
       flash[:success] = "'#{user.name}' has been added"
     else
       flash[:alert] = 'Something went wrong - User has not been created'
@@ -16,8 +15,13 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
+  def show
+    @user = User.find params[:id]
+    @events = @user.events.all
+  end
+
   def update
-    user = User.find(user_params[:id])
+    user = User.find(params[:id])
     if user.update_attributes(user_params)
       flash[:success] = "'#{user.name}' has been updated"
     else
