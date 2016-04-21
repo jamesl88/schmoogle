@@ -10,7 +10,7 @@
             = f.text_field :name, class: 'form-control'
           .form-group
             = f.label :scheduled_at
-            = f.text_field :scheduled_at, class: 'datepicker form-control'
+            = f.text_field :scheduled_at, class: 'datetime-picker form-control'
           = f.submit 'Save', class: 'btn btn-default'
 
 .container
@@ -30,6 +30,6 @@
               = form_for :activity, url: activity_path(activity), method: :put do |f|
                 = f.hidden_field :id, value: activity.id
                 %td.text-center= f.text_field :name, value: activity.name, class: 'form-control'
-                %td.text-center= f.text_field :scheduled_at, class: 'datepicker form-control', value: activity.scheduled_at.strftime("%d/%m/%Y - %I:%M%p")
+                %td.text-center= f.text_field :scheduled_at, class: 'datetime-picker form-control', value: activity.scheduled_at.strftime("%d/%m/%Y - %I:%M%p")
                 %td.text-center= f.submit 'Save', class: 'btn btn-warning'
                 %td.text-center= link_to 'delete', activity, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } 

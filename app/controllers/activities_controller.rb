@@ -7,7 +7,6 @@ class ActivitiesController < ApplicationController
   def create
     activity = Activity.new(activity_params)
     if activity.save
-      assign_activity_to_user
       flash[:success] = "'#{activity.name}' has been added"
     else
       flash[:alert] = 'Something went wrong - Your activity has not been created'
@@ -39,10 +38,6 @@ class ActivitiesController < ApplicationController
   end
 
   private
-
-  def assign_activity_to_user
-    User.all.each { |user| user.add_activities }
-  end
 
   def activity_params
     params.require(:activity).permit(:name, :scheduled_at)    

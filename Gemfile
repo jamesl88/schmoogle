@@ -20,8 +20,9 @@ group :development do
 end
 
 group :test do
+  gem "factory_girl_rails"
   gem "better_errors"
   gem 'byebug'
   gem 'spring'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.1'
 end

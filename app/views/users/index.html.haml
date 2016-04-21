@@ -17,6 +17,7 @@
         %h3.panel-title Users
       %table.table
         %thead
+          %th.text-center ID
           %th.text-center Name
           %th.text-center Edit
           %th.text-center Delete
@@ -25,6 +26,7 @@
             %tr
               = form_for :user, url: user_path(user), method: :put do |f|
                 = f.hidden_field :id, value: user.id
+                %td.text-center= link_to user.id, user_path(user)
                 %td.text-center= f.text_field :name, value: user.name, class: 'form-control'
                 %td.text-center= f.submit 'Save', class: 'btn btn-warning'
                 %td.text-center= link_to 'delete', user, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } 
