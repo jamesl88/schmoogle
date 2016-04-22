@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 20160420212621) do
     t.datetime "scheduled_at"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "events_id"
+    t.integer  "event_id"
     t.string   "location"
   end
 
-  add_index "activities", ["events_id"], name: "index_activities_on_events_id", using: :btree
+  add_index "activities", ["event_id"], name: "index_activities_on_event_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(version: 20160420212621) do
   end
 
   create_table "participants", force: :cascade do |t|
-    t.integer  "activity_id"
     t.boolean  "attending",   default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "name"
+    t.integer  "activity_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -28,7 +28,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find params[:id]
-    @activities = @event.activities.all
+    @activities = @event.activities.as_json(include: [:participants])
   end
 
   def destroy

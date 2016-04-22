@@ -1,6 +1,6 @@
 class Activity < ActiveRecord::Base
-  has_many :participants
-  has_many :users, through: :participants
+  has_many :participants, through: :rsvp
+  belongs_to :event
 
   validates_presence_of :scheduled_at
 
