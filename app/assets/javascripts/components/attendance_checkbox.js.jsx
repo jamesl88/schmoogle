@@ -1,4 +1,4 @@
-var ParticipantCheckbox = React.createClass({
+var AttendanceCheckbox = React.createClass({
   getInitialState: function() {
     return {
       checked: false,
@@ -8,8 +8,8 @@ var ParticipantCheckbox = React.createClass({
   handleChange: function() {
     $.ajax({
       type: "PUT",
-      url: "/api/v1/participants/" + this.props.id,
-      data: { _method:'PUT', checked: !this.state.checked },
+      url: "/attendances/" + this.props.id,
+      data: { _method:'PATCH', checked: !this.state.checked },
       dataType: 'json',
     });
 
@@ -19,7 +19,7 @@ var ParticipantCheckbox = React.createClass({
   },
 
   render: function() {
-    return <td>
+    return <td key={this.props.id}>
       <input
         type="checkbox"
         defaultChecked={this.props.checked}

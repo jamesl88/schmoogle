@@ -4,5 +4,6 @@
       .panel.panel-info
         .panel-heading
           %h3.panel-title= @event.name
+        = @serialized_event
 
-        = react_component('EventsTable', activities: @activities)
+        = react_component('EventsTable', event: @serialized_event)

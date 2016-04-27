@@ -6,11 +6,5 @@ Rails.application.routes.draw do
   resources :users
   resources :activities
   resources :participants, only: [:create, :update, :destroy]
-
-  #api
-  namespace :api do
-    namespace :v1 do
-      resources :participants, only: [:update]
-    end
-  end
+  resources :attendances, only: [:update]
 end

@@ -1,3 +1,5 @@
 class Participant < ActiveRecord::Base
-  has_many :activities, through: :rsvp
+  belongs_to :event
+  has_many :attendances
+  has_many :activities, through: :attendances
 end

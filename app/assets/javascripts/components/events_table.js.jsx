@@ -1,7 +1,7 @@
 var EventsTable = React.createClass({
   getInitialState: function() {
     return {
-      activities: [],
+      event: [],
       checked: false,
     }
   },
@@ -15,16 +15,16 @@ var EventsTable = React.createClass({
   render: function() {
     header = []
     rows = []
-
-    this.props.activities.forEach(function(activity, i) {
-      header.push(<th key={activity.id}>{activity.name}<br/>{activity.scheduled_at}</th>);
-
-      activity.participants.forEach(function(participant, i) {
-        rows.push(<td>{participant.name}</td>);
-      });
-
+    this.props.event.participants[0].attendances.forEach(function(attendance, i) {
+      activity = attendance.activity
+      header.push(<th key={i}>{activity.name}</th>);
     }.bind(this));
 
+    this.props.event.participants.forEach(function(participant, i) {
+      rows.push(
+        <ParticipantRow onUserInput={this.handleUserInput} participant={participant} key={i}/>
+      );
+    }.bind(this));
 
     return(
       <table className="table table-bordered table-striped">
@@ -35,10 +35,7 @@ var EventsTable = React.createClass({
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            {rows}
-          </tr>
+          {rows}
         </tbody>
       </table>
     )
