@@ -20,10 +20,11 @@
       %nav.navbar.navbar-default
         .container
           .navbar-header
-            %a{ class: "navbar-brand", href: "/"}
+            = link_to "/", class: "navbar-brand" do
               Schmoogle
               %span.logo.fa.fa-calendar
               Planner
+
           .navbar.hidden-sm.hidden-xs
             %ul.nav.navbar-nav.navbar-right
               %li

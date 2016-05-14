@@ -2,12 +2,14 @@ class ParticipantsController < ApplicationController
   def create
     participant = Participant.new(participant_params)
     if participant.save
-      flash[:success] = "'#{participant.name}' has been added"
+      respond_to do |format|
+        format.json { render json: EventSerializer.new(participant.event).as_json['event'] }
+      end
     else
-      flash[:alert] = 'Something went wrong - Your participant has not been created'
+      respond_to do |format|
+        format.json { status :unprocessable_enitity }
+      end
     end
-
-    redirect_to :back
   end
 
   def update
@@ -35,6 +37,6 @@ class ParticipantsController < ApplicationController
   private
 
   def participant_params
-    params.require(:participant).permit(:name, :activity_id, :attending)    
+    params.require(:participant).permit(:name, :activity_id, :attending, :event_id)
   end
 end

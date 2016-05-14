@@ -1,12 +1,21 @@
-var ParticipantRow = React.createClass({
+ParticipantRow = React.createClass({
+  getInitialState: function() {
+    return {
+      value: "",
+      participant: this.props.participant,
+    };
+  },
+
   render: function() {
     column = []
+
     column.push(
-      <td key={this.props.participant.name}>{this.props.participant.name}</td>
+      <td className="col-md-3 participant-title" key={this.state.participant.id}>{this.state.participant.name}</td>
     );
-    this.props.participant.attendances.forEach(function(attendance, i) {
+
+    this.state.participant.attendances.forEach(function(attendance, i) {
       column.push(
-        <AttendanceCheckbox onUserInput={this.props.onUserInput} checked={attendance.attending} key={i} id={attendance.id}/>
+        <AttendanceCheckbox checked={attendance.attending} key={attendance.id} id={attendance.id}/>
       );
     }.bind(this));
 

@@ -1,9 +1,7 @@
+- content_for :body_classes, ' event-planner '
+
 .container
   .row
-    .col-md-12
-      .panel.panel-info
-        .panel-heading
-          %h3.panel-title= @event.name
-        = @serialized_event
-
-        = react_component('EventsTable', event: @serialized_event)
+    .col-md-10.col-md-offset-1
+      %h2.page-header.text-center= @event.name
+      = react_component('EventsTable', event: @serialized_event, url: request.url)

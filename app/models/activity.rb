@@ -1,5 +1,5 @@
 class Activity < ActiveRecord::Base
-  has_many :attendances
+  has_many :attendances, dependent: :destroy
   has_many :participants, through: :attendances
   belongs_to :event
 

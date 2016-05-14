@@ -1,0 +1,21 @@
+.modal.fade#get-started{ tabindex: "-1", role:"dialog" }
+  .modal-dialog
+    .modal-content
+      .modal-body
+        .row
+          .col-sm-6.selection-card-padding-left
+            .selection-card
+              .selection-icon
+                .fa.fa-user
+              .selection-title
+                Log in
+          .col-sm-6.selection-card-padding-right
+            .selection-card
+              .selection-icon
+                .fa.fa-calendar-check-o
+              .selection-title
+                Quick event
+      .modal-footer
+        .sign-up.text-center
+          Don't have an account?
+          = link_to "Sign up »", "#"

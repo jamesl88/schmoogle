@@ -28,7 +28,14 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find params[:id]
-    @serialized_event = EventSerializer.new(@event).as_json
+    event_serializer = EventSerializer.new(@event).as_json
+
+    @serialized_event = event_serializer['event']
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @serialized_event }
+    end
   end
 
   def destroy
