@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 describe ActivitiesController do
-  describe 'GET index' do
-    before { get :index }
-
-    it { expect(response).to be_success }
-  end
-
   describe 'POST create' do
     before do
       request.env["HTTP_REFERER"] = "schmoogle.com"

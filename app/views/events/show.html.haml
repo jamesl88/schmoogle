@@ -2,6 +2,5 @@
 
 .container
   .row
-    .col-md-10.col-md-offset-1
-      %h2.page-header.text-center= @event.name
+    .col-md-12
       = react_component('EventsTable', event: @serialized_event, url: request.url)

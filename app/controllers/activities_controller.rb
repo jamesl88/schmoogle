@@ -1,18 +1,15 @@
 class ActivitiesController < ApplicationController
-  def index
-    @activity = Activity.new
-    @activities = Activity.all
-  end
-
   def create
     activity = Activity.new(activity_params)
     if activity.save
-      flash[:success] = "'#{activity.name}' has been added"
+      respond_to do |format|
+        format.json { render json: EventSerializer.new(activity.event).as_json['event'] }
+      end
     else
-      flash[:alert] = 'Something went wrong - Your activity has not been created'
+      respond_to do |format|
+        format.json { render json: { errors: activity.errors.full_messages } }
+      end
     end
-
-    redirect_to :back
   end
 
   def update
@@ -40,6 +37,6 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :scheduled_at)    
+    params.require(:activity).permit(:name, :scheduled_at, :event_id)
   end
 end

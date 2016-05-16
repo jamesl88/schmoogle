@@ -11,7 +11,7 @@ describe EventsController do
 
   describe 'GET show' do
     let(:event) { FactoryGirl.create(:event) }
-    before { get :show, id: event.id }
+    before { get :show, id: event.to_param }
 
     it { expect(response).to be_success }
   end
@@ -31,7 +31,7 @@ describe EventsController do
 
     before do
       request.env["HTTP_REFERER"] = "schmoogle.com"
-      put :update, id: event.id, event: { name: 'new name'}
+      put :update, id: event.to_param, event: { name: 'new name'}
     end
 
     it { expect(response).to redirect_to "schmoogle.com" }
@@ -43,7 +43,7 @@ describe EventsController do
 
     before do
       request.env["HTTP_REFERER"] = "schmoogle.com"
-      delete :destroy, id: event.id
+      delete :destroy, id: event.to_param
     end
 
     it { expect(response).to redirect_to "schmoogle.com" }

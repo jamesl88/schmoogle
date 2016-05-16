@@ -10,10 +10,12 @@
 
     %script{ src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"}
     %script{ src: "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.js"}
+    %script{ src: "https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"}
 
     %link{ href: 'https://fonts.googleapis.com/css?family=Great+Vibes|Poiret+One|Roboto:400,300,100', rel: 'stylesheet', type: 'text/css' }
     %link{ rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"}
     %link{ rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css"}
+    %link{ rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.css"}
 
   %body{class: content_for(:body_classes)}
     %header
@@ -24,12 +26,5 @@
               Schmoogle
               %span.logo.fa.fa-calendar
               Planner
-
-          .navbar.hidden-sm.hidden-xs
-            %ul.nav.navbar-nav.navbar-right
-              %li
-                %a{href: "#"} Log in
-              %li
-                %a{href: "#"} Sign up
 
     = yield

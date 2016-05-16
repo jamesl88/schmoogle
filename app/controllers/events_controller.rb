@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    event = Event.find(params[:id])
+    event = Event.find_by(slug: params[:id])
     if event.update_attributes(event_params)
       flash[:success] = "'#{event.name}' has been updated"
     else
@@ -27,7 +27,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find params[:id]
+    @event = Event.find_by(slug: params[:id])
     event_serializer = EventSerializer.new(@event).as_json
 
     @serialized_event = event_serializer['event']
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    event = Event.find(params[:id])
+    event = Event.find_by(slug: params[:id])
     if event.destroy!
       flash[:success] = "'#{event.name}' has been deleted"
     else
