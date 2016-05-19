@@ -7,7 +7,7 @@ class ParticipantsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { status :unprocessable_enitity }
+        format.json { render(json: "Please enter a name", status: :unprocessable_entity) }
       end
     end
   end

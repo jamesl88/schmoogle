@@ -3,6 +3,8 @@ class Participant < ActiveRecord::Base
   has_many :attendances, dependent: :destroy
   has_many :activities, through: :attendances
 
+  validates :name, presence: true
+
   after_create :add_attendances
 
   def add_attendances

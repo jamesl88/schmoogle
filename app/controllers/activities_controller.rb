@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: { errors: activity.errors.full_messages } }
+        format.json { render(json: "Something went wrong, please try again", status: :unprocessable_entity) }
       end
     end
   end

@@ -3,7 +3,8 @@ class Activity < ActiveRecord::Base
   has_many :participants, through: :attendances
   belongs_to :event
 
-  validates_presence_of :scheduled_at
+  validates :name, presence: true
+  validates :scheduled_at, uniqueness: true, presence: true
   default_scope { order(scheduled_at: :asc) }
 
   after_create :add_attendances

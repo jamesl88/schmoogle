@@ -6,11 +6,15 @@ var AttendanceCheckbox = React.createClass({
   },
 
   handleChange: function() {
+    self = this;
     $.ajax({
       type: "PUT",
       url: "/attendances/" + this.props.id,
       data: { _method:'PATCH', checked: !this.state.checked },
       dataType: 'json',
+      success: function(result) {
+        self.props.handleAttendanceCount(result)
+      }
     });
   },
 

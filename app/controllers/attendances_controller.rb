@@ -3,6 +3,6 @@ class AttendancesController < ApplicationController
     attendance = Attendance.find params[:id]
     attendance.toggle!(:attending)
 
-    render json: AttendanceSerializer.new(attendance)
+    render json: EventSerializer.new(attendance.activity.event)
   end
 end
