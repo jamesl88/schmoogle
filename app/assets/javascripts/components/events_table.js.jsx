@@ -89,18 +89,23 @@ var EventsTable = React.createClass({
     });
   },
 
-  _activityForm: function() {
+  componentWillMount: function() {
     var self = this;
+    $(document).on('click', ".time-picker, #activity_name", function() {
+      $('.time-picker').timepicker({'scrollDefault': 'now'});
+    });
+
+    $(document).on("changeTime", ".time-picker", function(e){
+      $(e.target).on('change', function(evnt) {
+        self._handleInputValue(evnt)
+      }.bind(this));
+    });
+  },
+
+  _activityForm: function() {
     var csrfToken = $('meta[name=csrf-token]').attr('content');
 
     if (this.state.display_activity_form == true) {
-      $('.time-picker').timepicker({'scrollDefault': 'now'});
-      $('.time-picker').on('changeTime', function(e) {
-        $(e.target).on('change', function(evnt) {
-          self._handleInputValue(evnt)
-        }.bind(this));
-      });
-
       return(
         <div>
           <div className="text-right">
@@ -118,7 +123,7 @@ var EventsTable = React.createClass({
       )
     } else {
       return(
-        <a className="btn btn-info" onClick={this._handleAddActivity}>Add activity</a>
+        <a className="btn btn-info add-activity" onClick={this._handleAddActivity}>Add activity</a>
       )
     }
   },
@@ -150,7 +155,11 @@ var EventsTable = React.createClass({
 
     return(
       <div className="event-table-container">
-        <h2 className="page-header">{this.props.event.name} </h2>
+        <div className="page-header">
+          <h2>{this.props.event.name}</h2>
+          <h5>{this.props.event.description}</h5>
+        </div>
+
         <div className="table-responsive">
         <table className="table table-striped table-hover">
           <thead>

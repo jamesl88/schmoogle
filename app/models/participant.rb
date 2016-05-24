@@ -8,6 +8,7 @@ class Participant < ActiveRecord::Base
   after_create :add_attendances
 
   def add_attendances
+    return if event.activities.empty?
     event.activities.each do |activity|
       attendances.create(activity_id: activity.id, participant_id: self.id)
     end

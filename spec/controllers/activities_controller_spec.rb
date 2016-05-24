@@ -1,37 +1,20 @@
 require 'rails_helper'
 
 describe ActivitiesController do
+  let!(:event) { FactoryGirl.create(:event) }
+  before do
+    any_instance_of(Activity) do |activity|
+      stub(activity).add_attendances
+    end
+  end
+
   describe 'POST create' do
     before do
       request.env["HTTP_REFERER"] = "schmoogle.com"
-      post :create, activity: { name: 'new activity', scheduled_at: Date.today}
+      post :create, activity: { name: 'new activity', scheduled_at: Time.now, event_id: event.id }, format: :json
     end
 
-    it { expect(response).to redirect_to "schmoogle.com" }
+    it { expect(response).to be_success }
     it { expect(Activity.last.name).to eq 'new activity' }
-  end
-
-  describe 'PUT update' do
-    let(:activity) { FactoryGirl.create(:activity, name: 'old name') }
-
-    before do
-      request.env["HTTP_REFERER"] = "schmoogle.com"
-      put :update, id: activity.id, activity: { name: 'new name'}
-    end
-
-    it { expect(response).to redirect_to "schmoogle.com" }
-    it { expect(activity.reload.name).to eq 'new name' }
-  end
-
-  describe 'DELETE destroy' do
-    let!(:activity) { FactoryGirl.create(:activity, name: 'old name') }
-
-    before do
-      request.env["HTTP_REFERER"] = "schmoogle.com"
-      delete :destroy, id: activity.id
-    end
-
-    it { expect(response).to redirect_to "schmoogle.com" }
-    it { expect(User.count).to eq 0 }
   end
 end

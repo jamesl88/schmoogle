@@ -148,6 +148,7 @@ GEM
       execjs
       rails (>= 3.2)
       tilt
+    rr (1.1.2)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -219,7 +220,8 @@ DEPENDENCIES
   pg
   rails (= 4.2.1)
   react-rails (~> 1.6.0)
-  rspec-rails (~> 3.1)
+  rr
+  rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

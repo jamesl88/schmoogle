@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
 
   before_save :generate_slug
 
+  accepts_nested_attributes_for :activities, :participants
+
   def to_param
     self.slug
   end

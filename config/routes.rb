@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :events
+  resources :events, only: [:create, :show]
   resources :home, only: [:index]
-  resources :users
-  resources :activities, only: [:create, :update, :destroy]
-  resources :participants, only: [:create, :update, :destroy]
+  resources :activities, only: [:create]
+  resources :participants, only: [:create]
   resources :attendances, only: [:update]
 end

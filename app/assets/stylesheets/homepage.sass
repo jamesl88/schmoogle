@@ -1,4 +1,7 @@
 body.homepage
+  .sign-up
+    border-top: 1px solid #F5F5F5
+    padding: 10px 0px
   .navbar
     margin-bottom: 0
 
@@ -41,24 +44,30 @@ body.homepage
 
   .selection-card-padding-left
     margin-bottom: 10px
-
-  .selection-card
-    height: 100px
-    min-width: 200px
-    border: 1px solid #B5B5B5
-    border-radius: 6px
-
+  a
+    color: #333
+    &:focus
+      text-decoration: none
     &:hover
-      background-color: #F5F5F5
+      text-decoration: none
 
-    .selection-icon
-      font-size: 48px
-      text-align: center
+    .selection-card
+      height: 100px
+      min-width: 200px
+      border: 1px solid #B5B5B5
+      border-radius: 6px
 
-    .selection-title
-      font-size: 18px
-      text-align: center
-      font-weight: 300
+      &:hover
+        background-color: #F5F5F5
+
+      .selection-icon
+        font-size: 48px
+        text-align: center
+
+      .selection-title
+        font-size: 18px
+        text-align: center
+        font-weight: 300
 
   .section
     margin-bottom: 24px

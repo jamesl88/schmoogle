@@ -12,28 +12,6 @@ class ParticipantsController < ApplicationController
     end
   end
 
-  def update
-    participant = Participant.find(params[:id])
-    if participant.update_attributes(participant_params)
-      flash[:success] = "'#{participant.name}' has been updated"
-    else
-      flash[:alert] = 'Opps - something went wrong. Please try again'
-    end
-
-    redirect_to :back
-  end
-
-  def destroy
-    participant = Participant.find(params[:id])
-    if participant.destroy!
-      flash[:success] = "'#{participant.name}' successfully deleted"
-    else
-      flash[:alert] = 'Opps - something went wrong. Please try again'
-    end
-
-    redirect_to :back
-  end
-
   private
 
   def participant_params

@@ -26,5 +26,6 @@ group :test do
   gem "better_errors"
   gem 'byebug'
   gem 'spring'
-  gem 'rspec-rails', '~> 3.1'
+  gem 'rspec-rails'
+  gem 'rr'
 end

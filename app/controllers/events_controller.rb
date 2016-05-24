@@ -1,29 +1,11 @@
 class EventsController < ApplicationController
-  def index
-    @events = Event.all
-  end
-
   def create
     event = Event.new(event_params)
-
     if event.save
-      flash[:success] = "'#{event.name}' has been added"
+      redirect_to event_path(event.slug), notice: "'#{event.name}' has been added"
     else
-      flash[:alert] = 'Something went wrong - Event has not been created'
+      redirect_to :back, alert: 'Something went wrong - Event has not been created'
     end
-
-    redirect_to :back
-  end
-
-  def update
-    event = Event.find_by(slug: params[:id])
-    if event.update_attributes(event_params)
-      flash[:success] = "'#{event.name}' has been updated"
-    else
-      flash[:alert] = 'Something went wrong - User has not been updated'
-    end
-
-    redirect_to :back
   end
 
   def show
@@ -38,20 +20,16 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy
-    event = Event.find_by(slug: params[:id])
-    if event.destroy!
-      flash[:success] = "'#{event.name}' has been deleted"
-    else
-      flash[:alert] = 'Opps - something went wrong. Please try again'
-    end
-
-    redirect_to :back
-  end
-
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :name, :date)
+    params.require(:event).permit(
+      :user_id,
+      :name,
+      :date,
+      :description,
+      activities_attributes: [:name, :scheduled_at],
+      participants_attributes: [:name]
+    )
   end
 end
