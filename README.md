@@ -11,5 +11,4 @@ available can be difficult to keep track of
 I saw this as an opportunity to build something using ReactJS and Ruby on Rails
 
 <img src="schmoogle1.png">
-<img src="schmoogle2.png">
 <img src="schmoogle3.png">
