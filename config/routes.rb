@@ -1,16 +1,9 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :events
+  resources :events, only: [:create, :show]
   resources :home, only: [:index]
-  resources :users
-  resources :activities
-  resources :participants, only: [:create, :update, :destroy]
-
-  #api
-  namespace :api do
-    namespace :v1 do
-      resources :participants, only: [:update]
-    end
-  end
+  resources :activities, only: [:create]
+  resources :participants, only: [:create]
+  resources :attendances, only: [:update]
 end

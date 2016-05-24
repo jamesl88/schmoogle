@@ -11,8 +11,8 @@
       .sub-header
         Scheduling simplified
 
-      = link_to 'Sign up', '#', class: 'btn btn-home'
-  
+      %button.btn.btn-home{ data: { toggle: 'modal', target: '#get-started' }} Get started
+
 .container
   .col-sm-12
     .row
@@ -27,10 +27,12 @@
           .description-icon.text-center
             .fa.fa-pencil-square-o
           .text-center
-            Pork loin turducken brisket andouille biltong. Landjaeger prosciutto t-bone tenderloin beef ribs boudin bresaola pancetta picanha sirloin. Landjaeger rump tri-tip pork chop pork loin. Shankle cupim flank ham hock strip steak. 
+            Pork loin turducken brisket andouille biltong. Landjaeger prosciutto t-bone tenderloin beef ribs boudin bresaola pancetta picanha sirloin. Landjaeger rump tri-tip pork chop pork loin. Shankle cupim flank ham hock strip steak.
       .col-sm-4
         .section
           .description-icon.text-center
             .fa.fa-users
           .text-center
-            Picanha beef flank turducken ball tip pork belly pastrami kielbasa. Pork loin frankfurter meatloaf, t-bone short loin turkey drumstick shoulder leberkas pork spare ribs tail filet mignon prosciutto pastrami. 
+            Picanha beef flank turducken ball tip pork belly pastrami kielbasa. Pork loin frankfurter meatloaf, t-bone short loin turkey drumstick shoulder leberkas pork spare ribs tail filet mignon prosciutto pastrami.
+
+= render 'home/partials/get_started'

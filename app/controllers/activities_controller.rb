@@ -1,45 +1,20 @@
 class ActivitiesController < ApplicationController
-  def index
-    @activity = Activity.new
-    @activities = Activity.all
-  end
-
   def create
     activity = Activity.new(activity_params)
     if activity.save
-      flash[:success] = "'#{activity.name}' has been added"
+      respond_to do |format|
+        format.json { render json: EventSerializer.new(activity.event).as_json['event'] }
+      end
     else
-      flash[:alert] = 'Something went wrong - Your activity has not been created'
+      respond_to do |format|
+        format.json { render(json: "Something went wrong, please try again", status: :unprocessable_entity) }
+      end
     end
-
-    redirect_to :back
-  end
-
-  def update
-    activity = Activity.find(params[:id])
-    if activity.update_attributes(activity_params)
-      flash[:success] = "'#{activity.name}' has been updated"
-    else
-      flash[:alert] = 'Opps - something went wrong. Please try again'
-    end
-
-    redirect_to :back
-  end
-
-  def destroy
-    activity = Activity.find(params[:id])
-    if activity.destroy!
-      flash[:success] = "'#{activity.name}' successfully deleted"
-    else
-      flash[:alert] = 'Opps - something went wrong. Please try again'
-    end
-
-    redirect_to :back
   end
 
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :scheduled_at)    
+    params.require(:activity).permit(:name, :scheduled_at, :event_id)
   end
 end

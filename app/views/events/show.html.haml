@@ -1,8 +1,6 @@
+- content_for :body_classes, ' event-planner '
+
 .container
   .row
     .col-md-12
-      .panel.panel-info
-        .panel-heading
-          %h3.panel-title= @event.name
-
-      //  = react_component('ParticipantsTable', users: @users)
+      = react_component('EventsTable', event: @serialized_event, url: request.url)

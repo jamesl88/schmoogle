@@ -1,0 +1,31 @@
+.modal.fade#get-started{ tabindex: "-1", role:"dialog" }
+  .modal-dialog
+    .modal-content
+      #get-started-content
+        .modal-header
+          %h4 Create your event
+        .modal-body
+          .row
+            .col-md-12
+              = form_for @event, url: events_path do |f|
+                = f.fields_for :activities, @event.activities.new do |a|
+                  = f.fields_for :participants, @event.participants.new do |p|
+                    .form-group
+                      = p.label :name,'Your name'
+                      = p.text_field :name, class: 'form-control'
+                    %hr
+                    .form-group
+                      = f.label :name,'Event name'
+                      = f.text_field :name, class: 'form-control'
+                      = f.label :date,'Event date'
+                      = f.date_field :date, class: 'form-control'
+                      = f.label :description,'Event description'
+                      = f.text_area :description, class: 'form-control'
+                    %hr
+                    .form-group
+                      = a.label :name, 'Activity name'
+                      = a.text_field :name, class: 'form-control'
+                      = a.label :scheduled_at, 'Scheduled at'
+                      = a.time_field :scheduled_at, class: 'form-control'
+
+                    = f.button "Create event", class: "btn btn-info"
