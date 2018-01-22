@@ -1,6 +1,8 @@
 ## Schmoogle planner
 http://schmoogle.herokuapp.com/
 
+Demo here: http://schmoogle.herokuapp.com/events/BLFWEJCD
+
 My very own doodle planner project.
 
 This project was initially built because I needed to plan a birthday party where some
